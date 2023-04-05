@@ -63,7 +63,6 @@ if [ -f ~/.django_bash_completion ]; then
 	. ~/.django_bash_completion
 fi
 
-alias rm='/bin/rm'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
@@ -83,8 +82,6 @@ alias cp='cp -i'
 alias du='du -h --max-depth=1'
 alias h='history | grep'
 alias mv='mv -i'
-alias rm='_rm'
-alias rrm='/bin/rm -i'	# real rm
 alias vi='vim'
 alias svi='sudo vi'
 
@@ -154,23 +151,6 @@ function _ls() {
 	# /bin/gls -C --color=always $@ | /usr/bin/iconv -f big5 -t utf8
 	/bin/gls -C --color=always $@
 	LANG=zh_TW.UTF-8
-}
-
-function old() {
-	day=$1; shift
-	find . -maxdepth 1 -mtime +${day} $@
-}
-
-function _rm() {
-	while [ $# -ge 1 ]; do
-		mv -f "$1" $HOME/tmp
-		echo "$1 deleted."
-		shift
-	done
-}
-
-function rmold() {
-	find . -maxdepth 1 -mtime +$1 -exec rm -rf {} \;
 }
 
 # Automatically activate Git projects' virtual environments based on the
